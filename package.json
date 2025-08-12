@@ -1,0 +1,24 @@
+{
+  "name": "poc-mfe",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev:shell": "npm run dev -w shell-app",
+    "build:shell": "npm run build -w shell-app",
+    "start:shell": "npm run start -w shell-app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sdsarun/poc-mfe.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sdsarun/poc-mfe/issues"
+  },
+  "homepage": "https://github.com/sdsarun/poc-mfe#readme",
+  "workspaces": [
+    "app/*"
+  ]
+}
