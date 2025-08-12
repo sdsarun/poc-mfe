@@ -38,6 +38,7 @@ build/
 # Monorepo specific
 # Ignore lock files in packages if using a root lock file
 /**/*/package-lock.json
+/**/*/.tanstack
 
 # Ignore IDE/editor folders
 .vscode/

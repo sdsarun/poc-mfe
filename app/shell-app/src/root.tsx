@@ -1,12 +1,21 @@
-import { memo } from "react"
+import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
+import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
-const Root = () => {
-  return (
-    <div>
-      <h1 className="">HELLO WORLD</h1>
-      <p>HELLO WORLD</p>
-    </div>
+export const rootRoute = createRootRoute({
+  notFoundComponent: <>404 Page not found.</>,
+  component: () => (
+    <>
+      <div className="p-2 flex gap-2">
+        <Link to="/" className="[&.active]:font-bold">
+          Home
+        </Link>{" "}
+        <Link to="/about" className="[&.active]:font-bold">
+          About
+        </Link>
+      </div>
+      <hr />
+      <TanStackRouterDevtools />
+      <Outlet />
+    </>
   )
-}
-
-export default memo(Root)
+});
