@@ -4,6 +4,8 @@ import HTMLWebpackPlugin from "html-webpack-plugin";
 import webpack from "webpack";
 import { tanstackRouter } from "@tanstack/router-plugin/webpack";
 
+import packageJSON from "./package.json" with { type: "json" };
+
 const { ModuleFederationPlugin } = webpack.container;
 
 /**
@@ -52,11 +54,35 @@ function defineConfig({ WEBPACK_SERVE }, argv) {
       tanstackRouter({
         target: "react",
         autoCodeSplitting: true,
-        enableRouteGeneration: false,
+        enableRouteGeneration: false
       }),
       new ModuleFederationPlugin({
         name: "host",
-        filename: "remoteEntry.js"
+        filename: "remoteEntry.js",
+        remotes: {
+          "@host": "host@http://localhost:3000/remoteEntry.js",
+        },
+        exposes: {
+          "./store": "./src/store/remote.ts"
+        },
+        shared: {
+          ...packageJSON.dependencies,
+          react: {
+            eager: true,
+            singleton: true,
+            requiredVersion: packageJSON.dependencies.react
+          },
+          "react-dom": {
+            eager: true,
+            singleton: true,
+            requiredVersion: packageJSON.dependencies["react-dom"]
+          },
+          zustand: {
+            eager: true,
+            singleton: true,
+            requiredVersion: packageJSON.dependencies["zustand"]
+          }
+        }
       })
     ]
   };

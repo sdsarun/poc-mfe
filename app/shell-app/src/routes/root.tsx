@@ -1,10 +1,12 @@
-import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
+import "../global.css";
+
+import { createRootRoute, Link, Navigate, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+import { PrimeReactProvider } from "primereact/api";
 
 export const rootRoute = createRootRoute({
-  notFoundComponent: <>404 Page not found.</>,
   component: () => (
-    <>
+    <PrimeReactProvider>
       <div className="p-2 flex gap-2">
         <Link to="/" className="[&.active]:font-bold">
           Home
@@ -16,6 +18,6 @@ export const rootRoute = createRootRoute({
       <hr />
       <TanStackRouterDevtools />
       <Outlet />
-    </>
-  )
+    </PrimeReactProvider>
+  ),
 });
