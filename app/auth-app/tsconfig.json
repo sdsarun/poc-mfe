@@ -1,0 +1,83 @@
+// {
+//   // Instructs the TypeScript compiler how to compile .ts files.
+//   "compilerOptions": {
+//     "module": "es2022",
+//     "target": "es2022",
+//     "moduleResolution": "node",
+//     "outDir": "./dist"
+//   },
+
+//   // If no 'files' or 'include' property is present in a tsconfig.json, 
+//   // the compiler defaults to including all files in the containing directory and subdirectories 
+//   // except those specified by 'exclude'. When a 'files' property is specified, 
+//   // only those files and those specified by 'include' are included.
+//   // "files": [
+//   //   "./src"
+//   // ]
+
+//   // Specifies a list of glob patterns that match files to be included in compilation.
+//   // If no 'files' or 'include' property is present in a tsconfig.json, 
+//   // the compiler defaults to including all files in the containing directory and subdirectories 
+//   // except those specified by 'exclude'. Requires TypeScript version 2.0 or later.
+//   "include": [
+//     "src/**/*"
+//   ], // relates -> ['include', 'files']
+
+//   // Specifies a list of files to be excluded from compilation. 
+//   // The 'exclude' property only affects the files included via the 'include' property and not the 'files' property. 
+//   // Glob patterns require TypeScript version 2.0 or later.
+//   "exclude": [], // relates -> ['include', 'files']
+
+//   // Path to base configuration file to inherit from (requires TypeScript version 2.1 or later), or array of base files, 
+//   // with the rightmost files having the greater priority (requires TypeScript version 5.0 or later).
+//   "extends": [],
+// }
+
+{
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+    // File Layout
+    // "rootDir": "./src",
+    "outDir": "./dist",
+
+    // Environment Settings
+    // See also https://aka.ms/tsconfig/module
+    "module": "es2022",
+    "target": "es2022",
+    "moduleResolution": "node",
+
+    // For nodejs:
+    "lib": ["esnext", "DOM", "DOM.Iterable"],
+    "types": ["node"],
+
+    // Other Outputs
+    "sourceMap": false,
+    "declaration": false,
+    "declarationMap": false,
+
+    // Stricter Typechecking Options
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+
+    // Style Options
+    // "noImplicitReturns": true,
+    // "noImplicitOverride": true,
+    // "noUnusedLocals": true,
+    // "noUnusedParameters": true,
+    // "noFallthroughCasesInSwitch": true,
+    // "noPropertyAccessFromIndexSignature": true,
+
+    // Recommended Options
+    "strict": true,
+    "jsx": "react-jsx",
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "noUncheckedSideEffectImports": true,
+    "moduleDetection": "force",
+    "skipLibCheck": true,
+    // "noEmit": true,
+    // "allowImportingTsExtensions": true
+  },
+}

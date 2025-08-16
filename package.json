@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev:shell": "npm run dev -w shell-app",
+    "dev:auth": "npm run dev -w auth-app",
     "build:shell": "npm run build -w shell-app",
     "start:shell": "npm run start -w shell-app"
   },
