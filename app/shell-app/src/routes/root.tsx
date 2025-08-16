@@ -1,4 +1,5 @@
 import "../global.css";
+import "../i18n/i18n";
 
 import { createRootRoute, Link, Navigate, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
@@ -19,5 +20,5 @@ export const rootRoute = createRootRoute({
       <TanStackRouterDevtools />
       <Outlet />
     </PrimeReactProvider>
-  ),
+  )
 });

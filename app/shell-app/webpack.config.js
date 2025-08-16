@@ -1,12 +1,17 @@
 import "webpack-dev-server";
-import path from "node:path";
+
+import path, { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+
 import HTMLWebpackPlugin from "html-webpack-plugin";
 import webpack from "webpack";
 import { tanstackRouter } from "@tanstack/router-plugin/webpack";
 
-import packageJSON from "./package.json" with { type: "json" };
+import packageJson from "./package.json" with { type: "json" };
 
 const { ModuleFederationPlugin } = webpack.container;
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 /**
  * @param {Record<string, any>} env
@@ -20,14 +25,16 @@ function defineConfig({ WEBPACK_SERVE }, argv) {
     entry: "./src/main.ts",
     devtool: "inline-source-map",
     devServer: {
-      static: "./dist",
+      static: {
+        directory: path.resolve(__dirname, "public")
+      },
       host: "0.0.0.0",
       port: 3000,
       hot: true
     },
     output: {
       clean: true,
-      path: path.resolve(import.meta.dirname, "dist")
+      path: path.resolve(__dirname, "dist")
     },
     module: {
       // loader
@@ -48,7 +55,7 @@ function defineConfig({ WEBPACK_SERVE }, argv) {
     },
     plugins: [
       new HTMLWebpackPlugin({
-        template: path.resolve(import.meta.dirname, "./public/index.html"),
+        template: path.resolve(__dirname, "./public/index.html"),
         minify: "auto"
       }),
       tanstackRouter({
@@ -60,27 +67,27 @@ function defineConfig({ WEBPACK_SERVE }, argv) {
         name: "host",
         filename: "remoteEntry.js",
         remotes: {
-          "@host": "host@http://localhost:3000/remoteEntry.js",
+          "@host": "host@http://localhost:3000/remoteEntry.js"
         },
         exposes: {
           "./store": "./src/store/remote.ts"
         },
         shared: {
-          ...packageJSON.dependencies,
+          ...packageJson.dependencies,
           react: {
             eager: true,
             singleton: true,
-            requiredVersion: packageJSON.dependencies.react
+            requiredVersion: packageJson.dependencies.react
           },
           "react-dom": {
             eager: true,
             singleton: true,
-            requiredVersion: packageJSON.dependencies["react-dom"]
+            requiredVersion: packageJson.dependencies["react-dom"]
           },
           zustand: {
             eager: true,
             singleton: true,
-            requiredVersion: packageJSON.dependencies["zustand"]
+            requiredVersion: packageJson.dependencies["zustand"]
           }
         }
       })
