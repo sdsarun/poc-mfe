@@ -1,0 +1,16 @@
+{
+  "name": "mfe",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "start": "concurrently --raw \"cd shell-mfe && npm run dev\" \"cd home-mfe && npm run dev\""
+  },
+  "keywords": [],
+  "author": "",
+  "workspaces": [
+    "*-mfe"
+  ],
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
