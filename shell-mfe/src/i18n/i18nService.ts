@@ -9,6 +9,9 @@ const DEFAULT_I18N_OPTIONS: I18nInitOptions = {
   interpolation: {
     escapeValue: false
   },
+  react: {
+    // useSuspense: true
+  },
   detection: {
     order: ["localStorage"]
   },

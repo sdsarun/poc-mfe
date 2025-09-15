@@ -7,9 +7,11 @@ const useI18n = useInstanceTranslation("shell_mfe", {
       changeLanguageButtonLabel: "React Remote : change language"
     },
     nav: {
+      appName: "MyApp Shell",
       home: "Home",
       profile: "Profile",
-      settings: "Settings"
+      settings: "Settings",
+      signOut: "Sign out",
     }
   },
   th: {
@@ -18,9 +20,11 @@ const useI18n = useInstanceTranslation("shell_mfe", {
       changeLanguageButtonLabel: "React Remote : Thai change language"
     },
     nav: {
+      appName: "แอพของฉัน Shell",
       home: "หน้าหลัก",
       profile: "โปรไฟล์",
-      settings: "การตั้งค่า"
+      settings: "การตั้งค่า",
+      signOut: "ออกจากระบบ"
     }
   }
 });

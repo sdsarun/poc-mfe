@@ -3,6 +3,7 @@ import useI18n from "@/i18n/useI18n";
 import { i18nService } from "@shell_mfe/i18n";
 import { Link } from "@tanstack/react-router";
 import React from "react";
+import { useAuth } from "@auth_mfe/services";
 
 type SidebarProps = {
   expanded: boolean;
@@ -11,6 +12,7 @@ type SidebarProps = {
 
 const Sidebar = ({ expanded, setExpanded }: SidebarProps) => {
   const { t } = useI18n("nav");
+  const { signout } = useAuth();
 
   const navItems = [
     { label: t("home"), to: "/" },
@@ -32,7 +34,9 @@ const Sidebar = ({ expanded, setExpanded }: SidebarProps) => {
       >
         {/* App name only visible when expanded */}
         {expanded && (
-          <span className="text-lg font-bold tracking-wide transition-opacity duration-200">MyApp</span>
+          <span className="text-lg font-bold tracking-wide transition-opacity duration-200">
+            {t("appName")}
+          </span>
         )}
 
         {/* Toggle button */}
@@ -77,6 +81,13 @@ const Sidebar = ({ expanded, setExpanded }: SidebarProps) => {
             {i18nService.getCurrentLanguage() === "en" ? "TH" : "EN"}
           </Button>
         )}
+
+        <Button
+          onClick={signout}
+          className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-500 transition"
+        >
+          {t("signOut")}
+        </Button>
 
         <span
           className={`text-xs text-gray-400 transition-opacity duration-200 ${

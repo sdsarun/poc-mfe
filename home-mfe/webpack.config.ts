@@ -22,7 +22,6 @@ export default function defineConfig(): Configuration {
     mode: "development",
     entry: "./src/bootstrap.ts",
     output: {
-      // uniqueName: "home_mfe",
       path: path.resolve(__dirname, "dist"),
       filename: "[name].bundle.js",
       publicPath: "auto",
@@ -97,42 +96,43 @@ export default function defineConfig(): Configuration {
         },
         remotes: {
           "@shell_mfe": 'shell_mfe@http://localhost:4000/remoteEntry.js', 
+          "@auth_mfe": "auth_mfe@http://localhost:4002/remoteEntry.js",
         },
         shared: {
           ...packageJson.dependencies,
           "i18next-browser-languagedetector": {
             eager: true,
-            requiredVersion: packageJson.dependencies["i18next-browser-languagedetector"],
+            // requiredVersion: packageJson.dependencies["i18next-browser-languagedetector"],
             singleton: true
           },
           "i18next": {
             eager: true,
-            requiredVersion: packageJson.dependencies["i18next"],
+            // requiredVersion: packageJson.dependencies["i18next"],
             singleton: true
           },
           "react-i18next": {
             eager: true,
-            requiredVersion: packageJson.dependencies["react-i18next"],
+            // requiredVersion: packageJson.dependencies["react-i18next"],
             singleton: true
           },
           "@tanstack/react-query": {
             eager: true,
-            requiredVersion: packageJson.dependencies["@tanstack/react-query"],
+            // requiredVersion: packageJson.dependencies["@tanstack/react-query"],
             singleton: true,
           },
           "@tanstack/react-router": {
             eager: true,
-            requiredVersion: packageJson.dependencies["@tanstack/react-router"],
+            // requiredVersion: packageJson.dependencies["@tanstack/react-router"],
             singleton: true,
           },
           react: {
             eager: true,
-            requiredVersion: packageJson.dependencies.react,
+            // requiredVersion: packageJson.dependencies.react,
             singleton: true,
           },
           "react-dom": {
             eager: true,
-            requiredVersion: packageJson.dependencies["react-dom"],
+            // requiredVersion: packageJson.dependencies["react-dom"],
             singleton: true
           }
         },

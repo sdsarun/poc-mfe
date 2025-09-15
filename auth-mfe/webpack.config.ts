@@ -7,8 +7,8 @@ import { fileURLToPath } from "node:url";
 
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
-
 import webpack from "webpack";
+
 import { type Configuration } from "webpack";
 
 const { container } = webpack;
@@ -28,14 +28,13 @@ export default function defineConfig(): Configuration {
       clean: true
     },
     devServer: {
-      port: 4000,
+      port: 4002,
       hot: true,
       liveReload: true,
       host: "0.0.0.0",
       static: {
         directory: path.resolve(__dirname, "public")
       },
-      historyApiFallback: true
     },
     devtool: "source-map",
     module: {
@@ -67,7 +66,7 @@ export default function defineConfig(): Configuration {
       extensions: [".ts", ".tsx", ".js"],
       alias: {
         "@": path.resolve(__dirname, "src"),
-        assets: path.resolve(__dirname, "public")
+        "assets": path.resolve(__dirname, "public")
       }
     },
     plugins: [
@@ -87,20 +86,19 @@ export default function defineConfig(): Configuration {
         template: path.resolve(__dirname, "public", "index.html"),
         publicPath: "auto",
         minify: "auto",
-        title: "Shell App"
+        title: "Auth App"
       }),
       new ModuleFederationPlugin({
-        name: "shell_mfe",
+        name: "auth_mfe",
         filename: "remoteEntry.js",
         exposes: {
-          "./components": "./src/components/remote-expose.ts",
-          "./i18n": "./src/i18n/remote-expose.ts",
-          "./styles": "./src/styles.css",
+          "./app": "./src/app.tsx",
+          "./services": "./src/services/remote-expose.ts",
+          "./components": "./src/components/remote-expose.ts"
         },
         remotes: {
-          "@shell_mfe": 'shell_mfe@http://localhost:4000/remoteEntry.js', 
-          "@home_mfe": "home_mfe@http://localhost:4001/remoteEntry.js",
           "@auth_mfe": "auth_mfe@http://localhost:4002/remoteEntry.js",
+          "@shell_mfe": 'shell_mfe@http://localhost:4000/remoteEntry.js',
         },
         shared: {
           ...packageJson.dependencies,
@@ -122,24 +120,24 @@ export default function defineConfig(): Configuration {
           "@tanstack/react-query": {
             eager: true,
             // requiredVersion: packageJson.dependencies["@tanstack/react-query"],
-            singleton: true
+            singleton: true,
           },
           "@tanstack/react-router": {
             eager: true,
             // requiredVersion: packageJson.dependencies["@tanstack/react-router"],
-            singleton: true
+            singleton: true,
           },
           react: {
             eager: true,
             // requiredVersion: packageJson.dependencies.react,
-            singleton: true
+            singleton: true,
           },
           "react-dom": {
             eager: true,
             // requiredVersion: packageJson.dependencies["react-dom"],
             singleton: true
           }
-        }
+        },
       })
     ]
   };
