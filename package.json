@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "start": "concurrently --raw \"cd shell-mfe && npm run dev\" \"cd home-mfe && npm run dev\" \"cd auth-mfe && npm run dev\""
+    "start": "concurrently --raw \"npm run dev -w shell-mfe\" \"npm run dev -w home-mfe\" \"npm run dev -w auth-mfe\""
   },
   "keywords": [],
   "author": "",

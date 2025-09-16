@@ -1,3 +1,5 @@
+// @ts-check
+
 import "webpack-dev-server";
 
 import packageJson from "./package.json" with { type: "json" };
@@ -7,9 +9,7 @@ import { fileURLToPath } from "node:url";
 
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
-
 import webpack from "webpack";
-import { type Configuration } from "webpack";
 
 const { container } = webpack;
 
@@ -17,7 +17,10 @@ const { ModuleFederationPlugin } = container;
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-export default function defineConfig(): Configuration {
+/**
+ * @returns {import('webpack').Configuration}
+ */
+export default function defineConfig() {
   return {
     mode: "development",
     entry: "./src/bootstrap.ts",
@@ -28,14 +31,14 @@ export default function defineConfig(): Configuration {
       clean: true
     },
     devServer: {
-      port: 4000,
+      port: 4001,
       hot: true,
       liveReload: true,
       host: "0.0.0.0",
       static: {
         directory: path.resolve(__dirname, "public")
       },
-      historyApiFallback: true
+      open: true,
     },
     devtool: "source-map",
     module: {
@@ -87,20 +90,17 @@ export default function defineConfig(): Configuration {
         template: path.resolve(__dirname, "public", "index.html"),
         publicPath: "auto",
         minify: "auto",
-        title: "Shell App"
+        title: "Home App"
       }),
       new ModuleFederationPlugin({
-        name: "shell_mfe",
+        name: "home_mfe",
         filename: "remoteEntry.js",
         exposes: {
-          "./components": "./src/components/remote-expose.ts",
-          "./i18n": "./src/i18n/remote-expose.ts",
-          "./styles": "./src/styles.css",
+          "./app": "./src/app.tsx"
         },
         remotes: {
-          "@shell_mfe": 'shell_mfe@http://localhost:4000/remoteEntry.js', 
-          "@home_mfe": "home_mfe@http://localhost:4001/remoteEntry.js",
-          "@auth_mfe": "auth_mfe@http://localhost:4002/remoteEntry.js",
+          "@shell_mfe": "shell_mfe@http://localhost:4000/remoteEntry.js",
+          "@auth_mfe": "auth_mfe@http://localhost:4002/remoteEntry.js"
         },
         shared: {
           ...packageJson.dependencies,
@@ -109,7 +109,7 @@ export default function defineConfig(): Configuration {
             // requiredVersion: packageJson.dependencies["i18next-browser-languagedetector"],
             singleton: true
           },
-          "i18next": {
+          i18next: {
             eager: true,
             // requiredVersion: packageJson.dependencies["i18next"],
             singleton: true

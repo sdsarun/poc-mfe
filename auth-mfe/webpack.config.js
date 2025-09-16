@@ -1,3 +1,5 @@
+// @ts-check
+
 import "webpack-dev-server";
 
 import packageJson from "./package.json" with { type: "json" };
@@ -9,15 +11,16 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import webpack from "webpack";
 
-import { type Configuration } from "webpack";
-
 const { container } = webpack;
 
 const { ModuleFederationPlugin } = container;
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-export default function defineConfig(): Configuration {
+/**
+ * @returns {import('webpack').Configuration}
+ */
+export default function defineConfig() {
   return {
     mode: "development",
     entry: "./src/bootstrap.ts",
@@ -35,6 +38,7 @@ export default function defineConfig(): Configuration {
       static: {
         directory: path.resolve(__dirname, "public")
       },
+      open: true,
     },
     devtool: "source-map",
     module: {
