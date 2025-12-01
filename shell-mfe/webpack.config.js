@@ -100,6 +100,7 @@ export default function defineConfig() {
         exposes: {
           "./components": "./src/components/remote-expose.ts",
           "./i18n": "./src/i18n/remote-expose.ts",
+          "./store": "./src/store/remote-expose.ts",
           "./styles": "./src/styles.css"
         },
         remotes: {

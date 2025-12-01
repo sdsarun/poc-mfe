@@ -3,11 +3,7 @@ import "./styles.css";
 
 import useI18n from "@/i18n/useI18n";
 import { Button } from "@shell_mfe/components";
-import {
-  QueryClient,
-  QueryClientProvider,
-  useQueryClient
-} from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
 
 function AppWrapper() {
@@ -91,6 +87,7 @@ export default function App() {
   } catch (error) {
     if (!queryClient) {
       queryClient = new QueryClient();
+      console.log("NOTOKAY");
     }
     return (
       <QueryClientProvider client={queryClient}>

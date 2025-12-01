@@ -7,12 +7,14 @@ import { QueryClient, QueryClientProvider, useQueryClient } from "@tanstack/reac
 import { useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { useAuth } from "@auth_mfe/services";
+import { useShellCounterStore } from "@shell_mfe/store";
 
 function AppWrapper() {
   const { t } = useI18n("homepage");
   const navigate = useNavigate();
 
   const { user, isLoading, isAuthenticated } = useAuth();
+  const shellCounterStore = useShellCounterStore();
   console.log("[LOG] - app.tsx:16 - AppWrapper - isAuthenticated:", isAuthenticated);
 
   return (
@@ -27,6 +29,11 @@ function AppWrapper() {
         {i18nService.getCurrentLanguage() === "en" ? "TH" : "EN"}
       </Button>
       <Button onClick={() => navigate({ to: "/about" })}>To about page</Button>
+      <hr />
+      <h1>Home got using shell counter {shellCounterStore.count}</h1>
+      <Button onClick={() => shellCounterStore.increment()}>Increment</Button>
+      <Button onClick={() => shellCounterStore.decrement()}>Decrement</Button>
+      <Button onClick={() => shellCounterStore.loadCount()}>Load from async task</Button>
     </div>
   );
 }

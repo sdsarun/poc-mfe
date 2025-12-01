@@ -17,7 +17,8 @@ const Sidebar = ({ expanded, setExpanded }: SidebarProps) => {
   const navItems = [
     { label: t("home"), to: "/" },
     { label: t("profile"), to: "/about" },
-    { label: t("settings"), to: "/settings" }
+    { label: t("settings"), to: "/settings" },
+    { label: t("shell"), to: "/shell" }
   ];
 
   return (
