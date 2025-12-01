@@ -14,7 +14,7 @@ const DEFAULT_I18N_OPTIONS: I18nInitOptions = {
   },
   detection: {
     order: ["localStorage"]
-  },
+  }
 };
 
 const i18nService = {
@@ -32,7 +32,7 @@ const i18nService = {
     const initOptions: I18nInitOptions = {
       ...options,
       ...DEFAULT_I18N_OPTIONS,
-      initImmediate: false,
+      initImmediate: false
     };
     const newInstance = i18next.createInstance().use(initReactI18next).use(LanguageDetector);
     newInstance.init(initOptions);

@@ -3,7 +3,9 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "start": "concurrently --raw \"npm run dev -w shell-mfe\" \"npm run dev -w home-mfe\" \"npm run dev -w auth-mfe\""
+    "dev": "concurrently --raw \"npm run dev -w shell-mfe\" \"npm run dev -w home-mfe\" \"npm run dev -w auth-mfe\"",
+    "build": "concurrently --raw \"npm run build -w shell-mfe\" \"npm run build -w home-mfe\" \"npm run build -w auth-mfe\"",
+    "serve": "concurrently --raw \"npm run serve -w shell-mfe\" \"npm run serve -w home-mfe\" \"npm run serve -w auth-mfe\""
   },
   "keywords": [],
   "author": "",
@@ -11,6 +13,7 @@
     "*-mfe"
   ],
   "devDependencies": {
-    "concurrently": "^9.2.1"
+    "concurrently": "^9.2.1",
+    "serve": "^14.2.5"
   }
 }

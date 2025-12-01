@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "webpack serve",
-    "build": "webpack build"
+    "build": "webpack build",
+    "serve": "serve dist -l 4002"
   },
   "keywords": [],
   "license": "ISC",

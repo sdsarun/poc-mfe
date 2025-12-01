@@ -1,5 +1,7 @@
 import "./styles.css";
 
+import pic1 from "../public/assets/images/pic1.jpg";
+
 import { Button } from "@shell_mfe/components";
 import useI18n from "@/i18n/useI18n";
 import { i18nService } from "@shell_mfe/i18n";
@@ -34,6 +36,7 @@ function AppWrapper() {
       <Button onClick={() => shellCounterStore.increment()}>Increment</Button>
       <Button onClick={() => shellCounterStore.decrement()}>Decrement</Button>
       <Button onClick={() => shellCounterStore.loadCount()}>Load from async task</Button>
+      <img src={pic1} width={200} height={200} />
     </div>
   );
 }
