@@ -4,8 +4,9 @@ import { loginRoute } from "@/routes/login";
 import { rootRoute } from "@/routes/root";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { shellRoute } from "./shell";
+import { authRoute } from "./auth";
 
-const routeTree = rootRoute.addChildren([loginRoute, homeRoute, aboutRoute, shellRoute]);
+const routeTree = rootRoute.addChildren([loginRoute, homeRoute, aboutRoute, shellRoute, authRoute]);
 
 const router = createRouter({
   routeTree,

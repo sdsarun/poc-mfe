@@ -18,7 +18,8 @@ const Sidebar = ({ expanded, setExpanded }: SidebarProps) => {
     { label: t("home"), to: "/" },
     { label: t("profile"), to: "/about" },
     { label: t("settings"), to: "/settings" },
-    { label: t("shell"), to: "/shell" }
+    { label: t("shell"), to: "/shell" },
+    { label: t("auth"), to: "/auth" }
   ];
 
   return (
